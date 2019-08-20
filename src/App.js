@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// package imports go at the top, your own files at the end
+import React, { Component } from 'react';
+// components
+import Welcome from './components/Welcome';
+import InputField from './components/InputField';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      name: 'Tramy',
+    }
+
+    this.handleName = this.handleName.bind(this);
+  }
+
+  handleName(event) {
+    this.setState({name: event.target.value});
+  }
+
+  render() {
+    return (
+      <div>
+        <Welcome name={this.state.name} age={24} />
+        <InputField handleName={this.handleName}/>
+      </div>
+    )
+  }
 }
-
-export default App;
